@@ -1,0 +1,8 @@
+{
+  "name": "sequence",
+  "version": "0.0.1",
+  "description": "reactive sequences",
+  "license": "MIT",
+  "main": "index.js",
+  "author": "Alexey Raspopov (https://github.com/alexeyraspopov)"
+}
