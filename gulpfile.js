@@ -14,7 +14,7 @@ gulp.task('analysis', function(){
 
 gulp.task('test', function(){
 	return gulp.src('spec.js')
-		.pipe(mocha({ reporter: 'list' }));
+		.pipe(mocha());
 });
 
 gulp.task('default', ['analysis', 'test']);
