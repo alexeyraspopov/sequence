@@ -15,26 +15,34 @@ describe('sequences', function(){
 	}
 
 	it('should have mapper', function(){
-		var actual, expected;
+		var actual, expected, wasCalled = false;
 
 		actual = sequence.create([1, 2, 3])
-			.map(inc);
+			.map(function(number){
+				wasCalled = true;
+				return inc(number);
+			});
 
 		// [1, 2, 3] -> [2, 3, 4]
 		expected = [2, 3, 4];
 
+		wasCalled.should.be.exactly(false);
 		actual.value().should.eql(expected);
 	});
 
 	it('should have filter', function(){
-		var actual, expected;
+		var actual, expected, wasCalled = false;
 
 		actual = sequence.create([1, 2, 3])
-			.filter(isEven);
+			.filter(function(number){
+				wasCalled = true;
+				return isEven(number);
+			});
 
 		// [1, 2, 3] -> [2]
 		expected = [2];
 
+		wasCalled.should.be.exactly(false);
 		actual.value().should.eql(expected);
 	});
 
