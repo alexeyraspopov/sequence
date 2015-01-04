@@ -1,15 +1,13 @@
-function identity(a){
-	return a;
-}
+function generator(list){
+	var pointer = 0,
+		count = list.length;
 
-function unit(data, morphism){
 	return {
-		map: function(fn){
-			return unit(data, mapper(fn));
+		next: function(){
+			return {
+				value: list[pointer++],
+				done: pointer > count
+			}
 		}
-	}
-}
-
-function sequence(data){
-	return unit(data, identity);
+	};
 }
