@@ -1,6 +1,6 @@
 # Sequence
 
-reactive sequences
+Lazy sequences.
 
 ## License
 
