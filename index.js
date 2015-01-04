@@ -7,7 +7,36 @@ function generator(list){
 			return {
 				value: list[pointer++],
 				done: pointer > count
-			}
+			};
 		}
 	};
 }
+
+function identity(a){
+	return a;
+}
+
+function take(gen, count, morphism){
+	if(count === 0) return [];
+
+	var data = gen.next();
+
+	if (!data.done) return [morphism(data.value)].concat(take(gen, count - 1, morphism));
+}
+
+function unit(gen, morphism){
+	return {
+		take: function(count){
+			return take(gen, count, morphism);
+		},
+		map: function(fn){
+			return unit(gen, fn);
+		}
+	}
+}
+
+function sequence(data){
+	return unit(generator(data), identity);
+}
+
+module.exports = sequence;
