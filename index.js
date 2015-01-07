@@ -1,4 +1,4 @@
-function iterator(list){
+function generator(list){
 	var pointer = 0,
 		count = list.length;
 
@@ -16,6 +16,12 @@ function identity(a){
 	return a;
 }
 
+function compose(f, g){
+	return function(a){
+		return f(g(a));
+	};
+}
+
 function take(gen, count, morphism){
 	if(count === 0) return [];
 
@@ -30,13 +36,13 @@ function unit(gen, morphism){
 			return take(gen, count, morphism);
 		},
 		map: function(fn){
-			return unit(gen, fn);
+			return unit(gen, compose(fn, morphism));
 		}
 	}
 }
 
 function sequence(data){
-	return unit(iterator(data), identity);
+	return unit(generator(data), identity);
 }
 
 module.exports = sequence;
