@@ -1,4 +1,4 @@
-function generator(list){
+function iterator(list){
 	var pointer = 0,
 		count = list.length;
 
@@ -36,7 +36,7 @@ function unit(gen, morphism){
 }
 
 function sequence(data){
-	return unit(generator(data), identity);
+	return unit(iterator(data), identity);
 }
 
 module.exports = sequence;
