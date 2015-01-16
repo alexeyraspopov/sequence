@@ -8,7 +8,9 @@ function* filter(predicate, iterator){
 			yield item;
 }
 
-function* reduce(operator, initial, iterator){
-	for (var item in iterator)
-		initial = yield operator(inital, item);
+function reduce(operator, initial, iterator){
+	for(var item in iterator){
+		initial = operator(inital, item);
+	}
+	return initial;
 }
