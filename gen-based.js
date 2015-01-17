@@ -14,3 +14,11 @@ function reduce(operator, initial, iterator){
 	}
 	return initial;
 }
+
+function toArray(iterator){
+	var array = [];
+
+	for (var item in iterator) array.push(item);
+
+	return array;
+}
