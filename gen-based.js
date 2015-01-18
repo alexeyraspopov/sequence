@@ -22,3 +22,7 @@ function toArray(iterator){
 
 	return array;
 }
+
+function* sort(comparator, iterator){
+	yield* toArray(iterator).sort(comparator);
+}
